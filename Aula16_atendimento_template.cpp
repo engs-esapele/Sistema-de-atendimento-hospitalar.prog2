@@ -20,6 +20,7 @@
 
 #include <iostream>
 #include <string>
+#include <locale.h>
 using namespace std;
 
 // ════════════════════════════════════════════════════════════════
@@ -173,6 +174,7 @@ void imprimirHistorico(PilhaHistorico& hist) {
 // ════════════════════════════════════════════════════════════════
 
 int main() {
+    setlocale(LC_ALL, "");  // para exibir acentos corretamente
     cout << "╔═══════════════════════════════════════════════════╗\n";
     cout << "║  Sistema de Atendimento — Squad ________________  ║\n";
     cout << "╚═══════════════════════════════════════════════════╝\n\n";
