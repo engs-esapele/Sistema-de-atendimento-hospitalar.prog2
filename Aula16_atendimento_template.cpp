@@ -46,7 +46,11 @@ struct FilaPacientes {
     //         Paciente entra no final da fila
     void enqueue(const string& nome, int urgencia) {
         // Dica: crie um novo No, atualize 'tras' e 'frente' se necessário
-        // ...
+        No* novo = new No(nome, urgencia);
+        if (!tras){
+            frente = tras = novo;
+            return;
+        }
     }
 
     // TODO 2: Implemente dequeue()
@@ -173,9 +177,9 @@ void imprimirHistorico(PilhaHistorico& hist) {
 // ════════════════════════════════════════════════════════════════
 
 int main() {
-    cout << "╔═══════════════════════════════════════════════════╗\n";
-    cout << "║  Sistema de Atendimento — Squad ________________  ║\n";
-    cout << "╚═══════════════════════════════════════════════════╝\n\n";
+    cout << "╔════════════════════════════════════════╗\n";
+    cout << "║  Sistema de Atendimento — Squad das Y  ║\n";
+    cout << "╚════════════════════════════════════════╝\n\n";
 
     // Crie as estruturas
     FilaPacientes  fila;
