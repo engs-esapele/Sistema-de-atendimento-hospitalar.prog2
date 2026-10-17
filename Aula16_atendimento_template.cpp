@@ -88,13 +88,25 @@ struct PilhaHistorico {
     // TODO 4: Implemente push(nome)
     //         Empilha um atendimento concluído
     void push(const string& nome) {
-        // ...
+        No* n  = new No(nome);
+        n->prox  = topo;
+        topo     = n;
     }
 
     // TODO 5: Implemente pop()
     //         Desempilha e retorna o último atendimento
     string pop() {
-        return "";  // substitua pelo retorno correto
+
+        if (isEmpty()) {
+            cout << "[ERRO] pilha de atendimentos já vazia.\n";
+            return ""; 
+        }
+
+        string nome = topo->nome;
+        No*  t  = topo;
+        topo = topo->prox;
+        delete t;
+        return nome;
     }
 
     // TODO 6: Implemente peek()
@@ -239,8 +251,8 @@ int main() {
 // [ ] TODO 1 — enqueue funciona (paciente entra na fila)
 // [ ] TODO 2 — dequeue funciona (paciente sai da fila, memória liberada)
 // [ ] TODO 3 — frente_peek retorna o nome sem remover
-// [ ] TODO 4 — push empilha no histórico
-// [ ] TODO 5 — pop desempilha e libera memória
+// [X] TODO 4 — push empilha no histórico
+// [X] TODO 5 — pop desempilha e libera memória
 // [ ] TODO 6 — peek retorna o topo sem remover
 // [ ] TODO 7 — adicionarMedico insere no final da lista
 // [ ] TODO 8 — chamarMedico remove do início e retorna o nome
