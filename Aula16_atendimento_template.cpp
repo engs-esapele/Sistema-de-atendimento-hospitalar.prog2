@@ -72,14 +72,18 @@ struct FilaPacientes {
     // TODO 3: Implemente frente_peek() — ver quem está na frente sem remover
     string frente_peek() const {
         if (isEmpty()) return "";  // substitua pelo retorno correto
+        return frente->nome; // se tiver gente, retorna o nome do 1ro sem dlete
     }
 
     bool isEmpty() const { return frente == nullptr; }
 
     // BÔNUS: Implemente tamanho() que conta os nós na fila
     int tamanho() const {
-        // ...
-        return 0;
+        int contador = 0; //percorre do 1(frente) ate o final(nullptr)
+        for(No* p = frente; p != nullptr; p=p->prox){ // percorre do primeiro(frente) ate o final(nullptr)
+            contador++;
+        }
+        return contador;
     }
 
     ~FilaPacientes() {
