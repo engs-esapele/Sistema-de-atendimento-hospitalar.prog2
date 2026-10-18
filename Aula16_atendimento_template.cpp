@@ -51,6 +51,7 @@ struct FilaPacientes {
             frente = tras = novo;
             return;
         }
+        tras->prox = novo;
     }
 
     // TODO 2: Implemente dequeue()
@@ -58,7 +59,12 @@ struct FilaPacientes {
     string dequeue() {
         // Dica: guarde o nome antes de deletar, atualize 'frente'
         //       se frente ficar nullptr, atualize 'tras' também!
-        return "";  // substitua pelo retorno correto
+        if (isEmpty()) return "";  // substitua pelo retorno correto
+
+        string nome_removido = frente->nome; // guarda o nome antes de deletar o nó da memoria
+        No* temp = frente; // gaurda o endereço do nó removido em variavel temporaria
+        frente = frente->prox; //a frente da fila avança para o prox paciente
+        
     }
 
     // TODO 3: Implemente frente_peek() — ver quem está na frente sem remover
