@@ -64,12 +64,14 @@ struct FilaPacientes {
         string nome_removido = frente->nome; // guarda o nome antes de deletar o nó da memoria
         No* temp = frente; // gaurda o endereço do nó removido em variavel temporaria
         frente = frente->prox; //a frente da fila avança para o prox paciente
-        
+     if (!frente) tras = nullptr; // se a frente vira nula, tras tmb vira 
+     delete temp; // deleta o nó antigo p liberar memoria
+     return nome_removido; // retorna o nome d qm foi removido  
     }
 
     // TODO 3: Implemente frente_peek() — ver quem está na frente sem remover
     string frente_peek() const {
-        return "";  // substitua pelo retorno correto
+        if (isEmpty()) return "";  // substitua pelo retorno correto
     }
 
     bool isEmpty() const { return frente == nullptr; }
