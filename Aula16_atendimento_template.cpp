@@ -259,9 +259,9 @@ int main() {
 // ════════════════════════════════════════════════════════════════
 // CHECKLIST DE ENTREGA
 // ════════════════════════════════════════════════════════════════
-// [ ] TODO 1 — enqueue funciona (paciente entra na fila)
-// [ ] TODO 2 — dequeue funciona (paciente sai da fila, memória liberada)
-// [ ] TODO 3 — frente_peek retorna o nome sem remover
+// [X] TODO 1 — enqueue funciona (paciente entra na fila)
+// [X] TODO 2 — dequeue funciona (paciente sai da fila, memória liberada)
+// [X] TODO 3 — frente_peek retorna o nome sem remover
 // [X] TODO 4 — push empilha no histórico
 // [X] TODO 5 — pop desempilha e libera memória
 // [X] TODO 6 — peek retorna o topo sem remover
@@ -272,4 +272,4 @@ int main() {
 // [X] Programa compila sem warnings: g++ -std=c++17 -Wall -o sis main.cpp
 // [X] Sem vazamentos de memória (todo new tem delete correspondente)
 // [X] Repositório no GitHub com histórico de commits organizado
-// [ ] README.md com instrução de compilação e exemplo de saída
+// [X] README.md com instrução de compilação e exemplo de saída
