@@ -121,18 +121,16 @@ struct ListaMedicos {
     // TODO 7: Implemente adicionarMedico(nome)
     //         Adiciona um médico no final da lista
     void adicionarMedico(const string& nome) {
-        No* novo = new No;
-        novo->nome = nome;
-        novo->prox = nullptr;
-        if (!head) {
-            head = novo;
-        } else {
-            No* p = head;
-            while (p->prox) p = p->prox;
-            p->prox = novo;
-        }
-    }
+    No* novo = new No(nome, 0);
 
+    if (!head) {
+        head = novo;
+    } else {
+        No* p = head;
+        while (p->prox) p = p->prox;
+        p->prox = novo;
+    }
+}
     // TODO 8: Implemente chamarMedico()
     //         Remove e retorna o primeiro médico disponível
     string chamarMedico() {
