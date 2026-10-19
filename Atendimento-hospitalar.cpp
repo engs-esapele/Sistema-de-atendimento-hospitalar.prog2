@@ -47,7 +47,12 @@ struct FilaPacientes {
     //         Paciente entra no final da fila
     void enqueue(const string& nome, int urgencia) {
         // Dica: crie um novo No, atualize 'tras' e 'frente' se necessário
-        // ...
+        No* novo = new No(nome, urgencia);
+        if (!tras){
+            frente = tras = novo;
+            return;
+        }
+        tras->prox = novo;
     }
 
     // TODO 2: Implemente dequeue()
@@ -55,20 +60,31 @@ struct FilaPacientes {
     string dequeue() {
         // Dica: guarde o nome antes de deletar, atualize 'frente'
         //       se frente ficar nullptr, atualize 'tras' também!
-        return "";  // substitua pelo retorno correto
+        if (isEmpty()) return "";  // substitua pelo retorno correto
+
+        string nome_removido = frente->nome; // guarda o nome antes de deletar o nó da memoria
+        No* temp = frente; // gaurda o endereço do nó removido em variavel temporaria
+        frente = frente->prox; //a frente da fila avança para o prox paciente
+     if (!frente) tras = nullptr; // se a frente vira nula, tras tmb vira 
+     delete temp; // deleta o nó antigo p liberar memoria
+     return nome_removido; // retorna o nome d qm foi removido  
     }
 
     // TODO 3: Implemente frente_peek() — ver quem está na frente sem remover
     string frente_peek() const {
-        return "";  // substitua pelo retorno correto
+        if (isEmpty()) return "";  // substitua pelo retorno correto
+        return frente->nome; // se tiver gente, retorna o nome do 1ro sem dlete
     }
 
     bool isEmpty() const { return frente == nullptr; }
 
     // BÔNUS: Implemente tamanho() que conta os nós na fila
     int tamanho() const {
-        // ...
-        return 0;
+        int contador = 0; //percorre do 1(frente) ate o final(nullptr)
+        for(No* p = frente; p != nullptr; p=p->prox){ // percorre do primeiro(frente) ate o final(nullptr)
+            contador++;
+        }
+        return contador;
     }
 
     ~FilaPacientes() {
@@ -93,12 +109,13 @@ struct PilhaHistorico {
         topo     = n;
     }
 
+
     // TODO 5: Implemente pop()
     //         Desempilha e retorna o último atendimento
     string pop() {
 
         if (isEmpty()) {
-            cout << "[ERRO] pilha de atendimentos já vazia.\n";
+            cout << "pilha de atendimentos vazia.\n";
             return ""; 
         }
 
@@ -111,9 +128,16 @@ struct PilhaHistorico {
 
     // TODO 6: Implemente peek()
     //         Retorna o último atendimento SEM remover
+
     string peek() const {
-        return "";  // substitua pelo retorno correto
+    if (isEmpty()) {
+        cout << "pilha de atendimentos vazia.\n";
+        return "";
     }
+
+    return topo->nome;
+}
+
 
     bool isEmpty() const { return topo == nullptr; }
 
@@ -210,6 +234,9 @@ void imprimirHistorico(PilhaHistorico& hist) {
 // ════════════════════════════════════════════════════════════════
 
 int main() {
+    cout << "╔════════════════════════════════════════╗\n";
+    cout << "║  Sistema de Atendimento — Squad das Y  ║\n";
+    cout << "╚════════════════════════════════════════╝\n\n";
     setlocale(LC_ALL, "");  // para exibir acentos corretamente
     cout << "╔═══════════════════════════════════════════════════╗\n";
     cout << "║  Sistema de Atendimento — Squad ________________  ║\n";
