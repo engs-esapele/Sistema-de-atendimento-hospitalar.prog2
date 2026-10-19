@@ -134,23 +134,52 @@ struct ListaMedicos {
     // TODO 7: Implemente adicionarMedico(nome)
     //         Adiciona um médico no final da lista
     void adicionarMedico(const string& nome) {
-        // Dica: percorra até o último nó e insira no final
-        // ...
-    }
+    No* novo = new No(nome, 0);
 
+    if (!head) {
+        head = novo;
+    } else {
+        No* p = head;
+        while (p->prox) p = p->prox;
+        p->prox = novo;
+    }
+}
     // TODO 8: Implemente chamarMedico()
-    //         Remove e retorna o primeiro médico disponível
-    string chamarMedico() {
-        // Dica: remova do início (como removerInicio da lista)
-        return "";  // substitua pelo retorno correto
-    }
 
+   string chamarMedico() {
+        if (!head) {
+            return "";
+        }
+
+        No* temp = head;
+        string nomeMedico = temp->nome;
+
+        head = head->prox; // Avança o início da lista
+        delete temp;       // Liberta a memória do nó removido
+
+        return nomeMedico;
+    }
     // TODO 9: Implemente percorrer()
     //         Imprime todos os médicos disponíveis
     void percorrer(const string& prefixo = "") const {
-        if (!prefixo.empty()) cout << prefixo << ": ";
-        // Dica: percorra com No* p = head; while(p) { ... p = p->prox; }
-        cout << "(lista vazia)\n";
+        if (!prefixo.empty()) {
+            cout << prefixo << ": ";
+        }
+
+        if (!head) {
+            cout << "(lista vazia)\n";
+            return;
+        }
+
+        No* p = head;
+        while (p) {
+            cout << p->nome;
+            if (p->prox) {
+                cout << " -> ";
+            }
+            p = p->prox;
+        }
+        cout << "\n";
     }
 
     bool temMedico() const { return head != nullptr; }
