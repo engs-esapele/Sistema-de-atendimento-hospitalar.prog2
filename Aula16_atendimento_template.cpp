@@ -171,11 +171,7 @@ struct ListaMedicos {
 // ════════════════════════════════════════════════════════════════
 // R4 · RELATÓRIO E HISTÓRICO COMPLETO
 // ════════════════════════════════════════════════════════════════
-
-// TODO 10: Implemente a função imprimirHistorico(PilhaHistorico&)
-//          Imprime todos os atendimentos do histórico na ordem (do topo à base)
-//          ATENÇÃO: não destrua o histórico ao imprimir!
-//          Dica: use uma pilha auxiliar para preservar os dados
+// TODO 10: Implemente imprimirHistorico(hist)
 void imprimirHistorico(PilhaHistorico& hist) {
     cout << "\n=== Relatório de Atendimentos ===\n";
     if (hist.isEmpty()) {
