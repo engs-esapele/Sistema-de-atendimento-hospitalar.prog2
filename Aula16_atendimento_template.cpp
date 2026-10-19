@@ -269,20 +269,21 @@ int main() {
     return 0;
 }
 
+
 // ════════════════════════════════════════════════════════════════
 // CHECKLIST DE ENTREGA
 // ════════════════════════════════════════════════════════════════
-// [ ] TODO 1 — enqueue funciona (paciente entra na fila)
-// [ ] TODO 2 — dequeue funciona (paciente sai da fila, memória liberada)
-// [ ] TODO 3 — frente_peek retorna o nome sem remover
+// [X] TODO 1 — enqueue funciona (paciente entra na fila)
+// [X] TODO 2 — dequeue funciona (paciente sai da fila, memória liberada)
+// [X] TODO 3 — frente_peek retorna o nome sem remover
 // [X] TODO 4 — push empilha no histórico
 // [X] TODO 5 — pop desempilha e libera memória
-// [ ] TODO 6 — peek retorna o topo sem remover
-// [ ] TODO 7 — adicionarMedico insere no final da lista
-// [ ] TODO 8 — chamarMedico remove do início e retorna o nome
-// [ ] TODO 9 — percorrer imprime todos os médicos com setas
-// [ ] TODO 10 — imprimirHistorico imprime sem destruir os dados
-// [ ] Programa compila sem warnings: g++ -std=c++17 -Wall -o sis main.cpp
-// [ ] Sem vazamentos de memória (todo new tem delete correspondente)
-// [ ] Repositório no GitHub com histórico de commits organizado
-// [ ] README.md com instrução de compilação e exemplo de saída
+// [X] TODO 6 — peek retorna o topo sem remover
+// [X] TODO 7 — adicionarMedico insere no final da lista
+// [X] TODO 8 — chamarMedico remove do início e retorna o nome
+// [X] TODO 9 — percorrer imprime todos os médicos com setas
+// [X] TODO 10 — imprimirHistorico imprime sem destruir os dados
+// [X] Programa compila sem warnings: g++ -std=c++17 -Wall -o sis main.cpp
+// [X] Sem vazamentos de memória (todo new tem delete correspondente)
+// [X] Repositório no GitHub com histórico de commits organizado
+// [X] README.md com instrução de compilação e exemplo de saída
