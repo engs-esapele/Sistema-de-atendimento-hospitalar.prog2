@@ -132,7 +132,7 @@ struct ListaMedicos {
     }
 }
     // TODO 8: Implemente chamarMedico()
-    //         Remove e retorna o primeiro médico disponível
+
    string chamarMedico() {
         if (!head) {
             return "";
@@ -149,9 +149,24 @@ struct ListaMedicos {
     // TODO 9: Implemente percorrer()
     //         Imprime todos os médicos disponíveis
     void percorrer(const string& prefixo = "") const {
-        if (!prefixo.empty()) cout << prefixo << ": ";
-        // Dica: percorra com No* p = head; while(p) { ... p = p->prox; }
-        cout << "(lista vazia)\n";
+        if (!prefixo.empty()) {
+            cout << prefixo << ": ";
+        }
+
+        if (!head) {
+            cout << "(lista vazia)\n";
+            return;
+        }
+
+        No* p = head;
+        while (p) {
+            cout << p->nome;
+            if (p->prox) {
+                cout << " -> ";
+            }
+            p = p->prox;
+        }
+        cout << "\n";
     }
 
     bool temMedico() const { return head != nullptr; }
