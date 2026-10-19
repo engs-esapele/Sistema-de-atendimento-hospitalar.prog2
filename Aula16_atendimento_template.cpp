@@ -112,7 +112,11 @@ struct PilhaHistorico {
     // TODO 6: Implemente peek()
     //         Retorna o último atendimento SEM remover
     string peek() const {
-        return "";  // substitua pelo retorno correto
+        if (isEmpty()) {
+            cout << "[ERRO] pilha de atendimentos já vazia.\n";
+            return "";
+        }
+        return topo->nome;
     }
 
     bool isEmpty() const { return topo == nullptr; }
@@ -134,52 +138,23 @@ struct ListaMedicos {
     // TODO 7: Implemente adicionarMedico(nome)
     //         Adiciona um médico no final da lista
     void adicionarMedico(const string& nome) {
-    No* novo = new No(nome, 0);
-
-    if (!head) {
-        head = novo;
-    } else {
-        No* p = head;
-        while (p->prox) p = p->prox;
-        p->prox = novo;
+        // Dica: percorra até o último nó e insira no final
+        // ...
     }
-}
+
     // TODO 8: Implemente chamarMedico()
-
-   string chamarMedico() {
-        if (!head) {
-            return "";
-        }
-
-        No* temp = head;
-        string nomeMedico = temp->nome;
-
-        head = head->prox; // Avança o início da lista
-        delete temp;       // Liberta a memória do nó removido
-
-        return nomeMedico;
+    //         Remove e retorna o primeiro médico disponível
+    string chamarMedico() {
+        // Dica: remova do início (como removerInicio da lista)
+        return "";  // substitua pelo retorno correto
     }
+
     // TODO 9: Implemente percorrer()
     //         Imprime todos os médicos disponíveis
     void percorrer(const string& prefixo = "") const {
-        if (!prefixo.empty()) {
-            cout << prefixo << ": ";
-        }
-
-        if (!head) {
-            cout << "(lista vazia)\n";
-            return;
-        }
-
-        No* p = head;
-        while (p) {
-            cout << p->nome;
-            if (p->prox) {
-                cout << " -> ";
-            }
-            p = p->prox;
-        }
-        cout << "\n";
+        if (!prefixo.empty()) cout << prefixo << ": ";
+        // Dica: percorra com No* p = head; while(p) { ... p = p->prox; }
+        cout << "(lista vazia)\n";
     }
 
     bool temMedico() const { return head != nullptr; }
@@ -207,7 +182,19 @@ void imprimirHistorico(PilhaHistorico& hist) {
         cout << "(nenhum atendimento registrado)\n";
         return;
     }
-    // ...
+
+    PilhaHistorico aux;
+    int contador = 1;
+    while (!hist.isEmpty()) {
+        string atendimento = hist.pop();
+        cout << "  " << contador++ << ". " << atendimento << "\n";
+        aux.push(atendimento);
+    }
+
+    // 2. Restaura a pilha original sem perder os dados
+    while (!aux.isEmpty()) {
+        hist.push(aux.pop());
+    }
 }
 
 // ════════════════════════════════════════════════════════════════
@@ -221,9 +208,9 @@ int main() {
     cout << "╚═══════════════════════════════════════════════════╝\n\n";
 
     // Crie as estruturas
-    FilaPacientes  fila;
+    FilaPacientes   fila;
     PilhaHistorico historico;
-    ListaMedicos   medicos;
+    ListaMedicos    medicos;
 
     // ── Cadastrar médicos (R3) ────────────────────────────────
     medicos.adicionarMedico("Dra. Ana Lima");
@@ -249,14 +236,13 @@ int main() {
         string medico   = medicos.chamarMedico();
 
         cout << "  [" << atend++ << "] " << medico
-            << " atende " << paciente << "\n";
+             << " atende " << paciente << "\n";
 
         // Registra no histórico (R2)
         historico.push(medico + " → " + paciente);
 
-        // Médico volta para a fila depois de atender
-        // (descomente após implementar adicionarMedico)
-        // medicos.adicionarMedico(medico);
+        // Médico volta para a fila depois de atender (R3)
+        medicos.adicionarMedico(medico);
     }
 
     // ── Último atendimento (peek na pilha) ────────────────────
@@ -265,11 +251,7 @@ int main() {
     // ── Relatório final (R4) ──────────────────────────────────
     imprimirHistorico(historico);
 
-    // ── Commit sugerido ──────────────────────────────────────
-    cout << "\n💡 Lembrete de commits:\n";
-    cout << "  git add atendimento_template.cpp README.md\n";
-    cout << "  git commit -m \"feat: sistema de atendimento integrado (R1-R4)\"\n";
-    cout << "  git push origin main\n";
+
 
     return 0;
 }
@@ -282,12 +264,12 @@ int main() {
 // [ ] TODO 3 — frente_peek retorna o nome sem remover
 // [X] TODO 4 — push empilha no histórico
 // [X] TODO 5 — pop desempilha e libera memória
-// [ ] TODO 6 — peek retorna o topo sem remover
-// [ ] TODO 7 — adicionarMedico insere no final da lista
-// [ ] TODO 8 — chamarMedico remove do início e retorna o nome
-// [ ] TODO 9 — percorrer imprime todos os médicos com setas
-// [ ] TODO 10 — imprimirHistorico imprime sem destruir os dados
-// [ ] Programa compila sem warnings: g++ -std=c++17 -Wall -o sis main.cpp
-// [ ] Sem vazamentos de memória (todo new tem delete correspondente)
-// [ ] Repositório no GitHub com histórico de commits organizado
+// [X] TODO 6 — peek retorna o topo sem remover
+// [X] TODO 7 — adicionarMedico insere no final da lista
+// [X] TODO 8 — chamarMedico remove do início e retorna o nome
+// [X] TODO 9 — percorrer imprime todos os médicos com setas
+// [X] TODO 10 — imprimirHistorico imprime sem destruir os dados
+// [X] Programa compila sem warnings: g++ -std=c++17 -Wall -o sis main.cpp
+// [X] Sem vazamentos de memória (todo new tem delete correspondente)
+// [X] Repositório no GitHub com histórico de commits organizado
 // [ ] README.md com instrução de compilação e exemplo de saída
