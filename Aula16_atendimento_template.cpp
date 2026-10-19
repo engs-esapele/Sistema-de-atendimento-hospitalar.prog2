@@ -133,11 +133,19 @@ struct ListaMedicos {
 }
     // TODO 8: Implemente chamarMedico()
     //         Remove e retorna o primeiro médico disponível
-    string chamarMedico() {
-        // Dica: remova do início (como removerInicio da lista)
-        return "";  // substitua pelo retorno correto
-    }
+   string chamarMedico() {
+        if (!head) {
+            return "";
+        }
 
+        No* temp = head;
+        string nomeMedico = temp->nome;
+
+        head = head->prox; // Avança o início da lista
+        delete temp;       // Liberta a memória do nó removido
+
+        return nomeMedico;
+    }
     // TODO 9: Implemente percorrer()
     //         Imprime todos os médicos disponíveis
     void percorrer(const string& prefixo = "") const {
